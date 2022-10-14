@@ -48,6 +48,22 @@ func namedReturnValueIfTypeIsDifference() (name string, age int8) {
 	return // not need to declare return value since it's been declared in named return value
 }
 
+// variadic function
+// mirip args kwargs di python
+// bisa terima lebih dari input yg di define
+// jadi dia pake array buat nerima datanya
+// tapi gaperlu declare array, cukup pisahin pake koma
+
+func sumAll(numbers ...int) int { // gabisa 2 variadic cuma bisa satu dan cuma bisa di paling akhir/kanan/final/belakang
+	// func test(a ...string, b string) // error
+	// func test(b string, a ...string) // bisa
+	total := 0
+	for _, number := range numbers {
+		total += number
+	}
+	return total
+}
+
 func main() {
 	simpleFunc()
 	bitComplicateFunc("Test")
@@ -68,5 +84,14 @@ func main() {
 
 	_, nationality, _ := namedReturnValue()
 	fmt.Println(nationality)
+
+	// variadic function
+	total := sumAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+	fmt.Println(total)
+
+	// memasukan slice atau array ke dalam variadic function
+	nums := []int{10, 20, 30, 40}
+	total_new := sumAll(nums...) // tambahin ... dibelakang slice
+	fmt.Println(total_new)
 
 }
