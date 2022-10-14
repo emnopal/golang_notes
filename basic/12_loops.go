@@ -15,24 +15,13 @@ func main() {
 
 	fmt.Println()
 
-	// for with statement
-	// init statement -> before for loop execute, mirip for loop di c++
-
+	// another example of loops
+	// mirip for loop di c++
 	for initCounter := 0; initCounter <= 10; initCounter++ {
 		fmt.Println(initCounter)
 	}
 
-	// post statement -> after for loop execute, and always execute after for loop, mirip do while
-
-	// infinite loop, just for example
-	// sums := 0
-	// for {
-	// 	fmt.Println(sums)
-	// 	sums++ // infinite loop
-	// }
-
 	// iterating array or slice
-
 	fmt.Println()
 
 	arrExample := []int{10, 20, 30, 40, 50, 60}
@@ -42,6 +31,7 @@ func main() {
 	}
 
 	// for range
+	// mirip loop di python
 	fmt.Println()
 
 	for index, nums := range arrExample {
@@ -52,6 +42,7 @@ func main() {
 		fmt.Println("Nums:", nums)
 	}
 
+	fmt.Println()
 	// iterating map
 	person := map[string]string{
 		"name":        "John Doe",
@@ -61,6 +52,35 @@ func main() {
 
 	for key, value := range person {
 		fmt.Println("Key:", key, "Value:", value)
+	}
+
+	// infinite loop, just for example
+	// sums := 0
+	// for {
+	// 	fmt.Println(sums)
+	// 	sums++ // infinite loop
+	// }
+	fmt.Println()
+
+	// breaking loop
+	sums := 0
+	for {
+		fmt.Println(sums)
+		if sums == 10 {
+			break
+		}
+		sums++ // infinite loop
+	}
+
+	fmt.Println()
+
+	// continue loop
+	for _, str := range "iterating to string" {
+		if string(str) == " " {
+			continue // ignoring whitespace
+		} else {
+			fmt.Println(string(str)) // cast back from byte to string
+		}
 	}
 
 }
