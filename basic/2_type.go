@@ -1,5 +1,7 @@
 package main
 
+// in golang, in one package, is forbidden to use same function name
+
 /*
 This is Type, Variable and Const section
 
