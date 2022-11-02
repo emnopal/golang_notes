@@ -81,6 +81,9 @@ func endAppWithRecover() {
 }
 
 func runAnotherAppsRecover(error bool) {
+	// kenapa recover nya ditaro di luar scope function ini?
+	// karena supaya tidak kepanggil 2x fungsi defer nya
+	// jadi best practice nya begitu
 	defer endAppWithRecover() // pastikan recover() diekseskusi di akhir
 	if error {
 		panic("Error!")
