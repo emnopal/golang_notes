@@ -40,6 +40,34 @@ func (animal Animal) GetName() string {
 	return animal.name
 }
 
+// interface kosong
+/*
+golang bukan oop
+jadi biasanya klo di bahasa oop itu ada superclass
+contoh:
+java ada java.lang.Object
+python ada object/any/None/Any
+javascript ada Object/object/any
+nah buat adain si super class ini di golang
+tinggal deklarasikan aja interface kosong
+jadi dia akan otomatis membuat tipe data jadi implementasinya
+
+contoh penggunaan interface kosong
+
+fmt.Println(a ...interface{}) // bebas masukin tipe data apapun ke dalam Println
+panic(v interface{}) // bebas masukin tipe data apapun ke dalam panic
+recover() interface[] // return apapun ke fungsi recover()
+
+*/
+
+// interface kosong atau any
+
+func sayInMultipleType() interface{} { // jadi any
+	// return 2
+	// return "test"
+	return true // dia bisa return apa aja, tapi gabisa return multiple value
+}
+
 func main() {
 	member := Person{
 		name: "Dani",
@@ -49,4 +77,14 @@ func main() {
 		name: "Cat",
 	}
 	sayHello(pet)
+
+	testInterfaceKosong := sayInMultipleType()
+	fmt.Println(testInterfaceKosong)
+
+	// atau
+	// var testInterfaceKosongLagi int = sayInMultipleType() // ini error, krn return type nya itu interface bkn int
+	// solusinya
+	var testInterfaceKosongLagi interface{} = sayInMultipleType()
+	fmt.Println(testInterfaceKosongLagi)
+	// atau
 }
