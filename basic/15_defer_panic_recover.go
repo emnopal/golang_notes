@@ -43,6 +43,11 @@ func runAppsPanic(error bool) {
 }
 
 // contoh code recover yg salah, jgn ditiru
+// gabisa di satu statement/scope/function si recover ini
+// karena keburu kena panic
+// jadi gak ke execute
+// dan statement: `defer recover()` ini gabisa (wrong statement),
+// karena gak akan ngembaliin apapun
 // func runAppsRecover(error bool) {
 // 	defer endApp()
 // 	if error {
