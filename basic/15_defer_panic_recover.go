@@ -53,7 +53,6 @@ func runAppsPanic(error bool) {
 // }
 
 // jadi buat catch error nya harus di defer
-// ini bad practice sih
 func recoverWrapper() {
 	message := recover()
 	if message != nil {
@@ -62,8 +61,8 @@ func recoverWrapper() {
 }
 
 func runAppsRecover(error bool) {
-	defer endApp()         // ini akan jalan dulu, setelah recoverWrapper() jalan, maka ini akan jalan lagi
-	defer recoverWrapper() // kemudian ini; jadi jalan 2x yg endApp() nya
+	defer endApp()
+	defer recoverWrapper()
 	if error {
 		panic("Error!")
 	}
@@ -71,7 +70,6 @@ func runAppsRecover(error bool) {
 }
 
 // atau bisa seperti ini
-// ini good practice
 func endAppWithRecover() {
 	message := recover()
 	if message != nil {
@@ -81,9 +79,6 @@ func endAppWithRecover() {
 }
 
 func runAnotherAppsRecover(error bool) {
-	// kenapa recover nya ditaro di luar scope function ini?
-	// karena supaya tidak kepanggil 2x fungsi defer nya
-	// jadi best practice nya begitu
 	defer endAppWithRecover() // pastikan recover() diekseskusi di akhir
 	if error {
 		panic("Error!")
