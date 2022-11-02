@@ -42,22 +42,9 @@ func runAppsPanic(error bool) {
 	}
 }
 
-// contoh code recover yg salah, jgn ditiru
-// gabisa di satu statement/scope/function si recover ini
-// karena keburu kena panic
-// jadi gak ke execute
-// dan statement: `defer recover()` ini gabisa (wrong statement),
-// karena gak akan ngembaliin apapun
-// func runAppsRecover(error bool) {
-// 	defer endApp()
-// 	if error {
-// 		panic("Error!")
-// 	}
-// 	message := recover()
-// 	fmt.Println(message)
-// }
-
 // jadi buat catch error nya harus di defer
+// cara 1
+// buat function baru
 func recoverWrapper() {
 	message := recover()
 	if message != nil {
@@ -71,10 +58,12 @@ func runAppsRecover(error bool) {
 	if error {
 		panic("Error!")
 	}
+	// this will not executed
 	fmt.Println("App running")
 }
 
 // atau bisa seperti ini
+// tambahin defer di existing function yg mau di defer
 func endAppWithRecover() {
 	message := recover()
 	if message != nil {
@@ -88,7 +77,24 @@ func runAnotherAppsRecover(error bool) {
 	if error {
 		panic("Error!")
 	}
+	// this will not executed
 	fmt.Println("App running")
+}
+
+// cara lain
+// buat recover di dalam scope function
+func anotherRecoverCase() {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println(r)
+		}
+	}()
+
+	num := 0
+	total := 12 / num
+	// this will not executed
+	fmt.Println(total)
+
 }
 
 func main() {
@@ -119,8 +125,10 @@ func main() {
 	runAppsRecover(true) // not breaking a code
 	// contoh lain
 	runAnotherAppsRecover(true) // not breaking a code
+	// contoh lain
+	anotherRecoverCase()
 
 	// so next statement can be executed
-	fmt.Println("Executed!")
+	fmt.Println("Executed! Finished!!!")
 
 }
