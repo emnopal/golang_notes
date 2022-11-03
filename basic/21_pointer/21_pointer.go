@@ -51,11 +51,39 @@ func changeCountryWithoutPointer(address Address, country interface{}) {
 }
 
 // dengan pointer
+// lebih disarankan
 func changeCountryWithPointer(address *Address, country interface{}) {
 	if country == nil {
 		address.country = "Indonesia"
 	} else {
 		address.country = country.(string)
+	}
+}
+
+// nah gmn klo dengan method?
+// method juga sama, dia pass by value juga
+// selalu gunakan pointer ketika bikin method
+
+// method tanpa pointer
+func (address Address) isAbroadNoPointer() {
+	if address.country == "Indonesia" {
+		fmt.Println("No")
+		address.region = address.region + "(local)"
+	} else {
+		fmt.Println("Yes")
+		address.region = address.region + "(abroad)"
+	}
+}
+
+// method dengan pointer
+// lebih disarankan
+func (address *Address) isAbroadPointer() { // tinggal tambahin aja *, otomatis jadi pointer
+	if address.country == "Indonesia" {
+		fmt.Println("No")
+		address.region = address.region + "(local)"
+	} else {
+		fmt.Println("Yes")
+		address.region = address.region + "(abroad)"
 	}
 }
 
@@ -171,6 +199,7 @@ func main() {
 		region:   "Kanto",
 		country:  "",
 	}
+	address14 := address13
 	changeCountryWithoutPointer(address13, "Japan")
 	fmt.Println(address13) // gaakan keubah country nya ke Japan
 
@@ -179,9 +208,22 @@ func main() {
 	changeCountryWithPointer(&address13, "Japan") // harus pake & karena address13 itu jadi pointer
 	fmt.Println(address13)                        // berubah country nya jadi Japan
 
+	// contoh buat method
+
+	// tanpa pointer
+	address14.isAbroadNoPointer()
+	fmt.Println(address14.region) // gaakan berubah jadi Kanto (abroad)
+
+	// dengan pointer
+	// gaperlu pake & klo di method
+	address14.isAbroadPointer()
+	fmt.Println(address14.region) // berubah jadi Kanto (abroad)
+
 	// pointer juga berfungsi buat saving memory, karena jika banyak parameter yg di pass by value
 	// maka akan semakin besar juga penggunaan memori nya
 	// oleh karena itu, sebaiknya selalu gunakan pointer ketika ingin passing data ke function supaya
 	// tidak terlalu banyak makan memori
 	// apalagi jika struct nya besar sekali
+
+	// Best practice nya adalah, kita harus sering2 pake pointer supaya saving memory, supaya variable gak di copy terus
 }
