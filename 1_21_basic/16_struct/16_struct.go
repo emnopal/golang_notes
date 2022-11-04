@@ -37,6 +37,9 @@ type Customer struct {
 	Member        bool
 }
 
+// NOTE: struct cuma bisa add field aja, gabisa tambahin function di dalam struct
+// klo mau buat function, maka harus buat method
+
 // struct method
 // mirip method di class
 func (customer Customer) isPremium() {
@@ -48,6 +51,7 @@ func (customer Customer) isPremium() {
 }
 
 // cara lain
+// cuma yg ini gak rekomen
 func isAgeOK(customer Customer) {
 	if customer.Age > 20 {
 		fmt.Println("Yes", customer.Name, "is OK")
