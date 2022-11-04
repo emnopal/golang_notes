@@ -30,6 +30,15 @@ buat ngereference/nge"point" (knp namanya pointer) variable ke letak memory addr
 jadi ngebuat si variable jadi pass by reference
 */
 
+// another explanation dari: https://dasarpemrogramangolang.novalagung.com/A-pointer.html
+/*
+1. Variabel biasa bisa diambil nilai pointernya, caranya dengan menambahkan tanda ampersand (&)
+tepat sebelum nama variabel. Metode ini disebut dengan referencing.
+
+2. Dan sebaliknya, nilai asli variabel pointer juga bisa diambil, dengan cara menambahkan
+tanda asterisk (*) tepat sebelum nama variabel. Metode ini disebut dengan dereferencing.
+*/
+
 type Address struct {
 	city, province, region, country string
 }
@@ -68,9 +77,11 @@ func changeCountryWithPointer(address *Address, country interface{}) {
 func (address Address) isAbroadNoPointer() {
 	if address.country == "Indonesia" {
 		fmt.Println("No")
+		// ignore error nya, karena ini cuma contoh
 		address.region = address.region + "(local)"
 	} else {
 		fmt.Println("Yes")
+		// ignore error nya, karena ini cuma contoh
 		address.region = address.region + "(abroad)"
 	}
 }
@@ -87,7 +98,13 @@ func (address *Address) isAbroadPointer() { // tinggal tambahin aja *, otomatis 
 	}
 }
 
+func change(original *int, value int) {
+	*original = value
+}
+
 func main() {
+
+	// ini dari pzn
 
 	// pass by value and their problem
 	address1 := Address{
@@ -226,4 +243,55 @@ func main() {
 	// apalagi jika struct nya besar sekali
 
 	// Best practice nya adalah, kita harus sering2 pake pointer supaya saving memory, supaya variable gak di copy terus
+
+	// ini dari: https://dasarpemrogramangolang.novalagung.com/A-pointer.html
+
+	// makna asli pointer
+	var numberA int = 4
+	var numberB *int = &numberA
+
+	// variable asli
+	fmt.Println("numberA (value)   :", numberA) // 4
+
+	// referencing ke variable A, jadi yg di print itu nilai address dari numberA
+	fmt.Println("numberA (address) :", &numberA) // 0x14000014130
+
+	// dereferencing dari variable numberA (krn numberB reference ke &numberA)
+	fmt.Println("numberB (value)   :", *numberB) // 4
+
+	// variable numberB hasil referencing
+	fmt.Println("numberB (address) :", numberB) // 0x14000014130
+	fmt.Println("")
+
+	// gimana klo nilainya diubah
+	fmt.Println("")
+
+	numberA = 5
+
+	// ini jelas berubah
+	fmt.Println("numberA (value)   :", numberA)
+
+	// address tidak akan berubah
+	fmt.Println("numberA (address) :", &numberA)
+
+	// krn numberB reference ke nilai numberA maka nilai nya berubah
+	fmt.Println("numberB (value)   :", *numberB)
+
+	// ini jelas karena reference ke numberA
+	fmt.Println("numberB (address) :", numberB)
+
+	// nah buat ganti variable di variable yg reference, maka butuh tanda asterisk
+	*numberB = 12
+	fmt.Println("numberB (value)   :", *numberB)
+
+	// jadinya berubah
+	fmt.Println("numberA (value)   :", numberA)
+
+	// klo di terapin ke function
+	var number = 4
+	fmt.Println("before :", number) // 4
+
+	change(&number, 10)
+	fmt.Println("after  :", number) // 10
+
 }
