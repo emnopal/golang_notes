@@ -66,6 +66,8 @@ type person struct {
 	age  int
 }
 
+// Embed struct juga bisa dibilang inheritance di golang, karena akan manggil
+// semua inherited method/property yg diambil dari struct yg lain
 type student struct {
 	grade  int
 	person // bisa ambil dari struct lain
