@@ -38,10 +38,6 @@ Contoh: bisa dilihat [disini](https://github.com/emnopal/private-go-module)
 
 Buat upgrade module tinggal tambahkan tag baru ke git
 
-## Note
-
-Ketika kita buat project go baru, gausah taruh semua module di dalam GOPATH
-
 ## Go Package
 
 Saya buat simple go package sendiri, bisa dilihat [disini](https://github.com/emnopal/private-go-module)
