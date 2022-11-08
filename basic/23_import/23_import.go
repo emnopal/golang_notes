@@ -1,17 +1,24 @@
 package main
 
 import (
+	"belajar_go/basic/23_import/example"
 	"belajar_go/basic/23_import/helper"
 	_ "belajar_go/basic/23_import/other" // ini gak akan dipanggil di fungsi disini, tapi dia otomatis dipanggil karena ada init() di dalam package other buat hindarin error linter golang jadinya harus ditambahin _ (blank)
 	"fmt"
 )
 
 func main() {
+
+	// defer juga bisa berfungsi sebagai destructor
+	defer example.End()
+
 	// function init blm di eksekusi
 	// krn dia bakalan di ekseskusi otomatis
 	// ketika helper dijalankan
 	greetings := helper.SayGreeting()
 	fmt.Println(greetings)
+
+	// people0 := helper.People{"Adam", "UK"} // without using key is bad practice
 
 	people1 := helper.People{
 		Name:        "John",

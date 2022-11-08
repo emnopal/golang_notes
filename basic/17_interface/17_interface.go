@@ -40,6 +40,31 @@ func (animal Animal) GetName() string {
 	return animal.name
 }
 
+// embed interface
+type HasIdentity interface {
+	HasName // inherit from interface HasName
+	GetAge() int
+}
+
+type People struct {
+	Person // inherit from struct Person
+	age    int
+}
+
+// implement embeded interface
+
+func (people *People) GetName() string {
+	return people.name
+}
+
+func (people *People) GetAge() int {
+	return people.age
+}
+
+func getIdentity(hasIdentity HasIdentity) {
+	fmt.Println("Hello", hasIdentity.GetName(), "with age", hasIdentity.GetAge())
+}
+
 // interface kosong
 /*
 golang bukan oop
@@ -77,6 +102,17 @@ func main() {
 		name: "Cat",
 	}
 	sayHello(pet)
+
+	smartPerson := Person{
+		name: "Jack",
+	}
+
+	smartPeople := People{
+		Person: smartPerson,
+		age:    32,
+	}
+
+	getIdentity(&smartPeople)
 
 	testInterfaceKosong := sayInMultipleType()
 	fmt.Println(testInterfaceKosong)
