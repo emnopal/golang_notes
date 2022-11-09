@@ -2,3 +2,5 @@ github.com/emnopal/private-go-module v1.0.0 h1:klvyJWmuBzHvob5Y/xBhEAqqTAuYpgNa0
 github.com/emnopal/private-go-module v1.0.0/go.mod h1:eFybrTCBaYPr3DYt6W1K0DOlH3EItOVQSBiZL2heVfs=
 github.com/emnopal/private-go-module v1.0.1 h1:M+kOmyrdtsvyTJ4hCQKZvchRj6QoJEw70Gp2iz7j+Q8=
 github.com/emnopal/private-go-module v1.0.1/go.mod h1:eFybrTCBaYPr3DYt6W1K0DOlH3EItOVQSBiZL2heVfs=
+github.com/emnopal/private-go-module/v2 v2.0.0 h1:dcKFUVTWrVwqwDWZG5ZLS9zduxWC2DH/XSY83WQDovI=
+github.com/emnopal/private-go-module/v2 v2.0.0/go.mod h1:2J2TyqXBhbtpWD78LVxd8+AUXzbJnqIa1wk+pRC/0SY=
