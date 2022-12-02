@@ -124,3 +124,14 @@ func TestSumChannel(t *testing.T) {
 
 	fmt.Println(x, y, x+y)
 }
+
+func TestTest(t *testing.T) {
+	a, b := 1, 2
+
+	var c int
+	var d int
+	c, d = 4, 5
+
+	fmt.Println(a, b)
+	fmt.Println(c, d)
+}
