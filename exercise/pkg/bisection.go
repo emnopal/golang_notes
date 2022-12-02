@@ -23,17 +23,13 @@ func (bisection Bisection) DerivativeFunction(x float64) float64 {
 }
 
 func (bisection Bisection) CalculateBisection(init float64, eps float64, debug bool) float64 {
-	x := init
-	for {
-		if math.Abs(init-x) <= eps {
-			funcx := bisection.Function(x)
-			dfuncx := bisection.DerivativeFunction(x)
-			init = x - (funcx / dfuncx)
-			if debug {
-				fmt.Println(x, init, math.Abs(init-x))
-			}
-		} else {
-			break
+	x := &init
+	for math.Abs(init-*x) <= eps {
+		funcx := bisection.Function(*x)
+		dfuncx := bisection.DerivativeFunction(*x)
+		init = *x - (funcx / dfuncx)
+		if debug {
+			fmt.Println(*x, init, math.Abs(init-*x))
 		}
 	}
 	return init

@@ -4,5 +4,5 @@ import "exercise/pkg"
 
 func main() {
 	result := pkg.Bisection{}
-	result.CalculateBisection(2, 4, true)
+	result.CalculateBisection(1, 0.001, true)
 }
