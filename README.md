@@ -1,6 +1,6 @@
 # golang_notes
 
-My repository which contains my journey for learning golang
+This repository contains personal notes of my journey in learning golang
 
 This repository language will be mixed between Indonesia and English
 
