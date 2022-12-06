@@ -37,6 +37,14 @@ tepat sebelum nama variabel. Metode ini disebut dengan referencing.
 
 2. Dan sebaliknya, nilai asli variabel pointer juga bisa diambil, dengan cara menambahkan
 tanda asterisk (*) tepat sebelum nama variabel. Metode ini disebut dengan dereferencing.
+
+Pointer adalah reference atau alamat memori. Variabel pointer berarti variabel yang berisi alamat memori suatu nilai.
+Sebagai contoh sebuah variabel bertipe integer memiliki nilai 4, maka yang dimaksud pointer adalah alamat memori di
+mana nilai 4 disimpan, bukan nilai 4 itu sendiri.
+
+Variabel-variabel yang memiliki reference atau alamat pointer yang sama, saling berhubungan satu sama lain dan
+nilainya pasti sama. Ketika ada perubahan nilai, maka akan memberikan efek kepada variabel lain
+(yang referensi-nya sama) yaitu nilainya ikut berubah.
 */
 
 type Address struct {

@@ -231,3 +231,8 @@ func TestAnotherBufferChannelExample1(t *testing.T) {
 	time.Sleep(2 * time.Second) // hold receiver, because sender is using concurrent
 
 }
+
+// note: buat concurrent function/method, gak disarankan buat pake buffer channel
+// karena akan membuat memori leak atau masalah performa
+// recommend := make(chan interface{}) // ok
+// notRecommend := make(chan interface{}, 1) // not recommend
