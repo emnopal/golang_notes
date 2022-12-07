@@ -179,3 +179,61 @@ func TestDefaultSelectChannel(t *testing.T) {
 		}
 	}
 } // running: 2 sec
+
+func TestDefaultSelectChannelOtherCase(t *testing.T) {
+	channel1 := make(chan string)
+	channel2 := make(chan string)
+	defer close(channel1)
+	defer close(channel2)
+
+	go ResponseChannel(channel1)
+	go ResponseChannel(channel2)
+
+	counter := 0
+	for {
+		select {
+		case data := <-channel1:
+			fmt.Println("Channel 1", data)
+			counter++
+		case data := <-channel2:
+			fmt.Println("Channel 2", data)
+			counter++
+		default: // untuk menghindari error ketika channel kita sleep, maka secara default selama function sleep, akan print bagian default ini
+			continue // kalo gamau print apapun
+		}
+		if counter == 2 {
+			break
+		}
+	}
+} // running: 2 sec
+
+// channel timeout
+/*
+Channel timeout, channel dalam waktu tertentu akan di close jika tidak ada aktivitas baik sending channel ataupun receive channe;
+*/
+
+func TestSimpleChannelTimeout(t *testing.T) {
+	channel := make(chan int)
+
+	// create infinite loop
+	go func() {
+		for i := 0; true; i++ {
+			channel <- i
+			time.Sleep(10 * time.Second) // but before it received by any receiver channel, it will be slept for 10sec
+		}
+	}()
+
+	// receiving channel
+	go func() {
+	loop: // <- this called label; used for loop/break/continue
+		for {
+			select {
+			case data := <-channel:
+				fmt.Print(`receive data "`, data, `"`, "\n") // this, never be printed out
+			case <-time.After(time.Second * 5):
+				fmt.Println("timeout. no activities under 5 seconds") // this will break if no activities for 5sec
+				break loop
+			}
+		}
+	}()
+}
