@@ -17,7 +17,7 @@ multiple cpu, jadi tiap sekali run bisa return beberapa thread, nah karena tiap 
 yang sama, makanya hal ini bahaya karena bisa jadi ketimpa sama hasil yg udah di run dan hasilnya tidak sesuai, dan juga
 tiap kali run bisa punya hasil yg beda
 
-istilah gampangnya: goroutine thread balapan buat ubah variable
+istilah gampangnya: goroutine thread balapan buat ubah variable, karena dia pake shared variable
 */
 
 func TestRaceCondition(t *testing.T) {
