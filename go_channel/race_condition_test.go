@@ -23,7 +23,7 @@ istilah gampangnya: goroutine thread balapan buat ubah variable
 func TestRaceCondition(t *testing.T) {
 	x := 0
 
-	for i := 0; i <= 1000; i++ {
+	for i := 1; i <= 1000; i++ {
 		go func() {
 			for j := 1; j <= 100; j++ {
 				x += 1
@@ -35,3 +35,5 @@ func TestRaceCondition(t *testing.T) {
 
 	fmt.Println("Counter:", x) // the result must be 100_000; but actually less or more than 100_000 and not equal 100_000
 }
+
+// solusinya pake sync.Mutex/sync.RMWutex atau bisa juga pake sync.Atomic
