@@ -12,9 +12,9 @@ my learning sequence:
         - Standard Library (Done: flag, fmt, os, reflection, strConv, strings)
         - Generics
         - Modules (Done)
-      - Goroutines
+      - Goroutines (Done)
         - Channel (Done)
-        - Context
+        - Context (Done)
       - I/O
         - Embed
       - Unit Test
