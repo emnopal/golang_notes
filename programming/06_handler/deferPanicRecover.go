@@ -40,6 +40,7 @@ func runAppsPanic(error bool) {
 	if error {
 		panic("Error!")
 	}
+	fmt.Println("this code is not reachable")
 }
 
 // jadi buat catch error nya harus di defer
@@ -107,6 +108,7 @@ func main() {
 	// ada sebuah function yg selesai di eksekusi walaupun terjadi error
 	// dia tetap akan di ekseskusi
 	// mirip finally
+	// atau mirip juga destructor
 	runApps()
 	// runAppsError() // still executed but then error thrown
 
